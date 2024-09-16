@@ -8,6 +8,7 @@
         <div class="data-win">
             <ElapsedTime/>
             <p>{{ $t('errors') }}: {{ errors }}</p>
+            <p>{{ $t('longestSequence') }}: {{ longestSequence }}</p>
         </div>
     </ModalGameOver>
     <header>
@@ -26,7 +27,7 @@
 
     <div class="wrapperLetters">
         <div class="letterClick" v-for="lettera in alphabet" :key="lettera" ref="singleLetterAlphabet"
-            @click="clickLetter(lettera)">{{ lettera }}
+            @click="clickLetter(lettera)"><p ref="paragraphLetter">{{ lettera }}</p>
         </div>
     </div>
 
@@ -47,7 +48,7 @@ export default {
 
         const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
         const singleLetter = ref();
-        const singleLetterAlphabet = ref([]);
+        const singleLetterAlphabet = ref();
 
         const clickLetter = (letter) => {
             for (let i = 0; i < props.word[0].length; i++) {
@@ -77,8 +78,13 @@ export default {
         })
 
         const incrementErrors = (letter) => {
-            if (!props.word[0].split('').includes(letter.toLowerCase())) {
+            if(props.word[0].split('').includes(letter.toLowerCase())){
+                store.dispatch('getIncrementSequence');
+            }
+            else {
                 store.dispatch('getErrors');
+                store.dispatch('getSaveSequences');
+                store.dispatch('getResetSequence');
             }
             if (errors.value === 6) {
                 lose();
@@ -98,6 +104,10 @@ export default {
             return store.getters.winGame;
         })
 
+        const longestSequence = computed(() => {
+            return store.getters.longestSequence;
+        })
+
         const winGame = () => {
             let wordWin = '';
             for (let i = 0; i < singleLetter.value.length; i++) {
@@ -109,6 +119,9 @@ export default {
             if (errors.value < 6 && wordWin === props.word[0].toUpperCase()) {
                 store.dispatch('getWinGame', true);
                 store.dispatch('getClearTime');
+                store.dispatch('getSaveSequences');
+                store.dispatch('getLongestSequences');
+                console.log(longestSequence.value)
             }
         }
 
@@ -131,6 +144,7 @@ export default {
             errors,
             gameOver,
             winner,
+            longestSequence
         }
     }
 

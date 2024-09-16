@@ -4,6 +4,7 @@ import errorsModule from "./modules/errors.js";
 import gameOverModule from "./modules/gameOver.js";
 import gameWinModule from "./modules/gameWin.js";
 import timeModule from "./modules/time.js";
+import sequencesModule from "./modules/sequences.js";
 
 const store = createStore({
     modules: {
@@ -11,7 +12,8 @@ const store = createStore({
         errors: errorsModule,
         gameOver: gameOverModule,
         gameWin: gameWinModule,
-        time: timeModule
+        time: timeModule,
+        sequences: sequencesModule
     },
     state(){
         return {
@@ -38,6 +40,9 @@ const store = createStore({
             context.commit('setWinGame',false);
             context.commit('resetCounter');
             context.commit('clearTime');
+            context.commit('resetSequence');
+            context.commit('resetArraySequences');
+            context.commit('longestSequence');
         }
     },
 

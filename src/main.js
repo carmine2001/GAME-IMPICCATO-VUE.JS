@@ -17,7 +17,8 @@ const i18n = createI18n({
             messageLose: "HAI PERSO!",
             messageWin: "BRAVO, HAI VINTO!",
             errors: "Errori",
-            elapsedTime: "Tempo impiegato"
+            elapsedTime: "Tempo impiegato",
+            longestSequence: "Sequenza più lunga"
         },
 
         en: {
@@ -27,7 +28,8 @@ const i18n = createI18n({
             messageLose: "GAME OVER!",
             messageWin: "GOOD, YOU WON!",
             errors: "Errors",
-            elapsedTime: "Elapsed Time"
+            elapsedTime: "Elapsed Time",
+            longestSequence: "Longest sequence"
         },
 
         es: {
@@ -37,7 +39,8 @@ const i18n = createI18n({
             messageLose: "JUEGO TERMINADO!",
             messageWin: "BIEN, GANASTE!",
             errors: "Errores",
-            elapsedTime: "Tiempo transcurrido"
+            elapsedTime: "Tiempo transcurrido",
+            longestSequence: "Secuencia más larga"
         },
 
         fr: {
@@ -47,7 +50,8 @@ const i18n = createI18n({
             messageLose: "JEU TERMINÉ!",
             messageWin: "BIEN, TU AS GAGNÉ",
             errors: "Erreurs",
-            elapsedTime: "Temps écoulé"
+            elapsedTime: "Temps écoulé",
+            longestSequence: "Séquence la plus longue"
         }
     }
 })
