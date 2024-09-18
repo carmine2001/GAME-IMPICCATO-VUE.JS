@@ -10,7 +10,7 @@
 
 
 <script>
-import { computed,onBeforeMount } from "vue";
+import { computed, onMounted } from "vue";
 import { useStore } from "vuex";
 import GuessWord from "@/components/GuessWord.vue";
 export default {
@@ -20,7 +20,7 @@ export default {
     setup() {
         const store = useStore();
 
-        onBeforeMount(async () => {
+        onMounted(async () => {
                 await store.dispatch('getWord');
                 store.dispatch('getTimeIncrement');
             })

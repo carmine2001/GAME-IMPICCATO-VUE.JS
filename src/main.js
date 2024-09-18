@@ -18,7 +18,8 @@ const i18n = createI18n({
             messageWin: "BRAVO, HAI VINTO!",
             errors: "Errori",
             elapsedTime: "Tempo impiegato",
-            longestSequence: "Sequenza più lunga"
+            longestSequence: "Sequenza più lunga",
+            alphabet: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
         },
 
         en: {
@@ -29,7 +30,8 @@ const i18n = createI18n({
             messageWin: "GOOD, YOU WON!",
             errors: "Errors",
             elapsedTime: "Elapsed Time",
-            longestSequence: "Longest sequence"
+            longestSequence: "Longest sequence",
+            alphabet: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
         },
 
         es: {
@@ -40,7 +42,8 @@ const i18n = createI18n({
             messageWin: "BIEN, GANASTE!",
             errors: "Errores",
             elapsedTime: "Tiempo transcurrido",
-            longestSequence: "Secuencia más larga"
+            longestSequence: "Secuencia más larga",
+            alphabet: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
         },
 
         fr: {
@@ -51,7 +54,8 @@ const i18n = createI18n({
             messageWin: "BIEN, TU AS GAGNÉ",
             errors: "Erreurs",
             elapsedTime: "Temps écoulé",
-            longestSequence: "Séquence la plus longue"
+            longestSequence: "Séquence la plus longue",
+            alphabet: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'À', 'Â', 'Æ', 'Ç', 'È', 'É', 'Ê', 'Ë', 'Î', 'Ï', 'Ô', 'Œ', 'Ù', 'Û', 'Ü', 'Ÿ']
         }
     }
 })

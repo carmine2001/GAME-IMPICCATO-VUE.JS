@@ -26,11 +26,10 @@
     </div>
 
     <div class="wrapperLetters">
-        <div class="letterClick" v-for="lettera in alphabet" :key="lettera" ref="singleLetterAlphabet"
-            @click="clickLetter(lettera)"><p ref="paragraphLetter">{{ lettera }}</p>
+        <div class="letterClick" v-for="lettera in $t('alphabet')" :key="lettera" ref="singleLetterAlphabet"
+            @click="clickLetter(lettera)">{{ lettera }}
         </div>
     </div>
-
 </template>
 
 <script>
@@ -38,6 +37,7 @@ import { ref, computed, provide, onMounted } from "vue";
 import ModalGameOver from "./ModalGameOver.vue";
 import ElapsedTime from "./ElapsedTime.vue";
 import { useStore } from "vuex";
+import { useI18n } from "vue-i18n";
 export default {
     components: {
         ModalGameOver,
@@ -46,7 +46,7 @@ export default {
     props: ['word'],
     setup(props) {
 
-        const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+        // const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
         const singleLetter = ref();
         const singleLetterAlphabet = ref();
 
@@ -58,8 +58,7 @@ export default {
                 }
                 else {
                     const index = alphabet.indexOf(letter);
-                    singleLetterAlphabet.value[index].style = 'pointer-events: none;';
-                    singleLetterAlphabet.value[index].style = 'opacity: 0;';
+                    singleLetterAlphabet.value[index].classList.add('isClicked');
                 }
             }
 
@@ -128,16 +127,18 @@ export default {
         const resetDivAlphabet = () => {
             for (let i = 0; i < singleLetterAlphabet.value.length; i++) {
                 const element = singleLetterAlphabet.value[i];
-                element.style = 'display: flex;';
+                element.classList.remove('isClicked');
             }
         }
 
+        const i18n = useI18n()
+
         onMounted(() => {
+            // console.log(i18n);
             provide('resetAlphabet', resetDivAlphabet);
         })
 
         return {
-            alphabet,
             singleLetter,
             singleLetterAlphabet,
             clickLetter,
@@ -193,6 +194,11 @@ header div {
     display: flex;
     margin-bottom: 20px;
     justify-content: center;
+}
+
+.isClicked {
+    pointer-events: none;
+    opacity: 0;
 }
 
 .wrapperLetters {
