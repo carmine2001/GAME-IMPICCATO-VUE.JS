@@ -18,7 +18,7 @@
 <script>
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
-import { inject } from "vue";
+import { inject, onMounted } from "vue";
 export default {
     setup(){
         const router = useRouter();
@@ -36,6 +36,10 @@ export default {
             resetDivAlphabet();
             store.dispatch('getTimeIncrement');
         }
+
+        onMounted(() => {
+            store.dispatch('getCursorDistance');
+        })
 
         return {
             toHome,

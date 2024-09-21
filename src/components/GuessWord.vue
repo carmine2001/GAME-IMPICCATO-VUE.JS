@@ -9,11 +9,12 @@
             <ElapsedTime/>
             <p>{{ $t('errors') }}: {{ errors }}</p>
             <p>{{ $t('longestSequence') }}: {{ longestSequence }}</p>
+            <p>Distanza cursore: {{ cursorDistance }}</p>
         </div>
     </ModalGameOver>
     <header>
         <div class="first-wrapper">
-            <p>ROUND: 1</p>
+            <p>{{ $t('titleGame') }}</p>
         </div>
 
         <div class="second-wrapper">
@@ -26,7 +27,7 @@
     </div>
 
     <div class="wrapperLetters">
-        <div class="letterClick" v-for="lettera in $t('alphabet')" :key="lettera" ref="singleLetterAlphabet"
+        <div class="letterClick" v-for="lettera in alphabet" :key="lettera" ref="singleLetterAlphabet"
             @click="clickLetter(lettera)">{{ lettera }}
         </div>
     </div>
@@ -46,7 +47,6 @@ export default {
     props: ['word'],
     setup(props) {
 
-        // const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
         const singleLetter = ref();
         const singleLetterAlphabet = ref();
 
@@ -57,7 +57,7 @@ export default {
                     singleLetter.value[i].innerHTML = letter;
                 }
                 else {
-                    const index = alphabet.indexOf(letter);
+                    const index = alphabet.value.indexOf(letter);
                     singleLetterAlphabet.value[index].classList.add('isClicked');
                 }
             }
@@ -120,7 +120,6 @@ export default {
                 store.dispatch('getClearTime');
                 store.dispatch('getSaveSequences');
                 store.dispatch('getLongestSequences');
-                console.log(longestSequence.value)
             }
         }
 
@@ -131,11 +130,16 @@ export default {
             }
         }
 
-        const i18n = useI18n()
+        const { t } = useI18n();
+
+        const alphabet = computed(() => JSON.parse(t('alphabet')))
 
         onMounted(() => {
-            // console.log(i18n);
             provide('resetAlphabet', resetDivAlphabet);
+        })
+
+        const cursorDistance = computed(() => {
+            return Math.round(store.getters.cursorDistance) + "px";
         })
 
         return {
@@ -145,7 +149,9 @@ export default {
             errors,
             gameOver,
             winner,
-            longestSequence
+            longestSequence,
+            alphabet,
+            cursorDistance
         }
     }
 
@@ -184,6 +190,11 @@ header div {
 
 .first-wrapper {
     text-align: left;
+}
+
+.first-wrapper P {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.7rem;
 }
 
 .second-wrapper {

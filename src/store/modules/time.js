@@ -29,7 +29,6 @@ export default {
 
         getClearTime(context) {
             context.commit('clearTime');
-            console.log(context.state.counter)
         },
     },
 

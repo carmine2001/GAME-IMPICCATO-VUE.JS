@@ -5,6 +5,8 @@ import gameOverModule from "./modules/gameOver.js";
 import gameWinModule from "./modules/gameWin.js";
 import timeModule from "./modules/time.js";
 import sequencesModule from "./modules/sequences.js";
+import cursorDistanceModule from "./modules/cursorDistance.js";
+import spinnerLoadingModule from "./modules/spinnerLoading.js";
 
 const store = createStore({
     modules: {
@@ -13,7 +15,9 @@ const store = createStore({
         gameOver: gameOverModule,
         gameWin: gameWinModule,
         time: timeModule,
-        sequences: sequencesModule
+        sequences: sequencesModule,
+        cursorDistance: cursorDistanceModule,
+        spinnerLoading: spinnerLoadingModule
     },
     state(){
         return {
@@ -43,6 +47,7 @@ const store = createStore({
             context.commit('resetSequence');
             context.commit('resetArraySequences');
             context.commit('longestSequence');
+            context.commit('resetCursorDistance');
         }
     },
 

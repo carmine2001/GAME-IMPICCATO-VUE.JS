@@ -1,5 +1,7 @@
 <template>
-    <p>{{ $t('elapsedTime') }}: {{ converteElapsedTime }}</p>
+    <p v-if="elapsedTimeWithSec">{{ $t('elapsedTimeSeconds', {seconds: converteElapsedTime.seconds}) }}</p>
+    <p v-else-if="elapsedTimeWithMinSec">{{ $t('elapsedTimeMinSec', {minutes: converteElapsedTime.minutes, seconds: converteElapsedTime.seconds}) }}</p>
+    <p v-else-if="elapsedTimeWithHoursMinSec">{{ $t('elapsedTimeHoursMinSec', {hours: converteElapsedTime.hours, minutes: converteElapsedTime.minutes, seconds: converteElapsedTime.seconds}) }}</p>
 </template>
 
 <script>
@@ -14,40 +16,46 @@ export default {
             return store.getters.counter;
         })
 
+        const elapsedTimeWithSec = computed(() => elapsedTime.value < 60);
+        const elapsedTimeWithMinSec = computed(() => elapsedTime.value >= 60 && elapsedTime.value < 3600);
+        const elapsedTimeWithHoursMinSec = computed(() => elapsedTime.value >= 3600);
+
         const converteElapsedTime = computed(() => {
-            if(elapsedTime.value < 60) {
-                return `${elapsedTime.value} secondi`;
+            if(elapsedTimeWithSec.value) {
+                return {
+                    seconds: elapsedTime.value
+                }
             }
-            else if (elapsedTime.value >= 60 && elapsedTime.value < 3600) {
-                const minuts = elapsedTime.value / 60;
-                const decimalPart = minuts - Math.floor(minuts);
+            else if (elapsedTimeWithMinSec.value) {
+                const minutes = elapsedTime.value / 60;
+                const decimalPart = minutes - Math.floor(minutes);
                 const seconds = decimalPart * 60;
-                if(minuts - decimalPart == 1){
-                    return `${minuts - decimalPart} minuto e ${Math.round(seconds)} secondi`;
-                }
-                else {
-                    return `${minuts - decimalPart} minuti e ${Math.round(seconds)} secondi`;
+                return {
+                    minutes: minutes - decimalPart,
+                    seconds: Math.round(seconds)
                 }
             }
-            else if(elapsedTime.value >= 3600){
+            else if(elapsedTimeWithHoursMinSec.value){
                 const oneHour = 3600;
                 const hours = Math.floor(elapsedTime.value / oneHour);
                 const converteHoursInSeconds = hours * oneHour;
                 const secondsRemaining = (elapsedTime.value - converteHoursInSeconds);
-                const minuts = Math.floor(secondsRemaining / 60);
-                const converteMinutsInHours = minuts * 60;
+                const minutes = Math.floor(secondsRemaining / 60);
+                const converteMinutsInHours = minutes * 60;
                 const seconds = (elapsedTime.value - converteHoursInSeconds) - converteMinutsInHours;
-                if(hours == 1){
-                    return `${hours} ora, ${minuts} minuti e ${seconds} secondi`;
-                }
-                else {
-                    return `${hours} ore, ${minuts} minuti e ${seconds} secondi`;
+                return {
+                    hours,
+                    minutes,
+                    seconds
                 }
             }
         })
 
         return {
-            converteElapsedTime
+            converteElapsedTime,
+            elapsedTimeWithSec,
+            elapsedTimeWithMinSec,
+            elapsedTimeWithHoursMinSec
         }
     }
 }
