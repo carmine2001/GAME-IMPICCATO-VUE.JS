@@ -10,5 +10,6 @@ export default {
     elapsedTimeMinSec: "Tempo impiegato: {minutes} minuti e {seconds} secondi",
     elapsedTimeHoursMinSec: "Tempo impigetao: {hours} ore, {minutes} minuti e {seconds} secondi",
     longestSequence: "Sequenza più lunga",
-    alphabet: '["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]'
+    alphabet: '["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]',
+    cursorDistance: "Distanza del cursore"
 }

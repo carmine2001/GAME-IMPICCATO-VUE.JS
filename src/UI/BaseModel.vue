@@ -6,7 +6,7 @@
 
 <style scoped>
     div{
-        background-color: white;
+        background-image: url("../assets/sfondo.webp");
         padding: 20px;
         border-radius: 30px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 

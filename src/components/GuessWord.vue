@@ -9,7 +9,7 @@
             <ElapsedTime/>
             <p>{{ $t('errors') }}: {{ errors }}</p>
             <p>{{ $t('longestSequence') }}: {{ longestSequence }}</p>
-            <p>Distanza cursore: {{ cursorDistance }}</p>
+            <p>{{ $t('cursorDistance') }}: {{ cursorDistance }}</p>
         </div>
     </ModalGameOver>
     <header>
@@ -188,6 +188,10 @@ header div {
     font-size: 1rem
 }
 
+.data-win p {
+    margin: 0;
+}
+
 .first-wrapper {
     text-align: left;
 }
@@ -223,7 +227,7 @@ header div {
     width: 70px;
     height: 70px;
     margin: 0 10px 10px 0;
-    font-size: 1.5rem;
+    font-size: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;

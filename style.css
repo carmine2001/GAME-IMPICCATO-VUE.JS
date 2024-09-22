@@ -1,3 +1,5 @@
 body{
-    background-image: url("./src/assets/Foresta-amazzonica.jpg");
+    background-image: url("./src/assets/img-impiccato.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
